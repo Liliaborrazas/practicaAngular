@@ -1,4 +1,4 @@
-import { Component  } from '@angular/core';
+import { Component, Output, EventEmitter, Input } from '@angular/core';
 import { TaskService } from '../../services/task.service';
 import { Task } from '../../interfaces/task.interface';
 
@@ -9,15 +9,30 @@ import { Task } from '../../interfaces/task.interface';
 })
 export class TaskComponent {
   tasks: Task[] = [];
+  @Input() hijo!:string
 
   constructor(private taskService: TaskService) {
-    // this.tasks = this.taskService.getTask();
+
   }
   ngOnInit() {
+    console.log(this.hijo)
     this.tasks = this.taskService.getTask();
   }
-  // removeTask(id: number) {
-  //   this.taskService.removeTask(id);
-  //   this.tasks = this.taskService.getTask();
-  // }
+
+  addTask(task:Task):void {
+    this.taskService.addTask(task);
+    this.tasks = this.taskService.getTask();
+    this.task = { name:'', completado: false};
+  }
+
+  removeTask(id: string) {
+    this.taskService.removeTask(id);
+    this.tasks = this.taskService.getTask();
+  }
+
+
+  public task : Task={
+    name:'',
+    completado: false
+  };
 }

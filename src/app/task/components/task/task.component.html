@@ -1,15 +1,46 @@
-
-<h4 class="text-primary">Listado de Tareas</h4>
-<ul class="list-group">
-  <li class="list-group-item" *ngFor="let task of tasks">
-    <div>
-      <!-- <span class="text-primary">{{task.id}}. </span> -->
-      <span>{{task.name}} - </span>
-      <strong class="{{task.completado?'text-success' :'text-warning' }}"> {{task.completado ? 'Si' : 'No'}}</strong>
-    </div>
-    <!-- <button (click)="removeTask(task.id || '')" class="btn btn-danger">X</button> -->
-  </li>
-</ul>
+<div class="d-flex">
+  <div class="marginRigth flex-fill">
+    <h4 class="mt-4 text-primary">Listado de Tareas</h4>
+    <ul class="list-group">
+      <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let task of tasks">
+        <div>
+          <span>{{task.name}} - </span>
+          <strong class="{{task.completado?'text-success' :'text-warning' }}"> {{task.completado ? 'Si' : 'No' }} </strong>
+        </div>
+        <button (click)="removeTask(task.id || '')" class="btn btn-danger">X</button>
+      </li>
+    </ul>
+  </div>
+  <div class="flex-fill">
+    <h4 class="mt-4 text-primary">Agregar Tarea</h4>
+    <form class="d-flex flex-column" (ngSubmit)="addTask(task)">
+      <input
+        name="name"
+        type="text"
+        [(ngModel)]="task.name"
+        class="form-control mb-2"
+        placeholder="Nombre de la tarea"
+        >
+        <label class="form-check-label" for="flexCheckChecked">
+      <input
+        name="completado"
+        type="checkbox"
+        [(ngModel)]="task.completado"
+        class="form-check-input mb-4"
+        placeholder="Completado"
+        id="flexCheckChecked"
+        >
+          Completado
+        </label>
+      <button
+        type="submit"
+        class="btn btn-primary">
+        Agregar
+      </button>
+      <!-- <pre>{{tasks | json}}</pre> -->
+    </form>
+  </div>
+</div>
 
 
 
