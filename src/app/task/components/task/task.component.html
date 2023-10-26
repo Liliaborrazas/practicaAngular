@@ -1,0 +1,17 @@
+
+<h4 class="text-primary">Listado de Tareas</h4>
+<ul class="list-group">
+  <li class="list-group-item" *ngFor="let task of tasks">
+    <div>
+      <!-- <span class="text-primary">{{task.id}}. </span> -->
+      <span>{{task.name}} - </span>
+      <strong class="{{task.completado?'text-success' :'text-warning' }}"> {{task.completado ? 'Si' : 'No'}}</strong>
+    </div>
+    <!-- <button (click)="removeTask(task.id || '')" class="btn btn-danger">X</button> -->
+  </li>
+</ul>
+
+
+
+
+
